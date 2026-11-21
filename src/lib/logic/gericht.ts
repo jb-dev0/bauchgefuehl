@@ -169,7 +169,8 @@ export function berechne(
 		art,
 		veg: art === 'veggie',
 		items,
-		steps: [{ title: 'Zubereitung', lines: tm ? e.tmSchritte : e.schritte }],
+		// Eigene Rezepte: jeder Schritt eine eigene Nummer, ohne Abschnittstitel
+		steps: (tm ? e.tmSchritte : e.schritte).map((l) => ({ title: '', lines: [l] })),
 		tm,
 		tmVerfuegbar: e.tmSchritte.length > 0,
 		chosen: [],

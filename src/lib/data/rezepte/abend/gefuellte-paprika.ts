@@ -75,12 +75,7 @@ export default rezept({
 			10,
 			1
 		),
-		tm(
-			6,
-			'Die Hälfte des Fetas hineinbröseln und 5 Sek./Linkslauf/Stufe 2 unterheben.',
-			0,
-			0.5
-		),
+		tm(6, 'Die Hälfte des Fetas hineinbröseln und 5 Sek./Linkslauf/Stufe 2 unterheben.', 0, 0.5),
 		backen,
 		petersilie
 	],

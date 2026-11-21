@@ -10,7 +10,7 @@
 		<li>
 			<span class="num">{i + 1}</span>
 			<div>
-				{#if list.length > 1 || st.title !== 'Zubereitung'}<h3>{st.title}</h3>{/if}
+				{#if st.title}<h3>{st.title}</h3>{/if}
 				{#each st.lines as line, j (j)}<p>{line}</p>{/each}
 			</div>
 		</li>
@@ -48,6 +48,9 @@
 	}
 	p {
 		margin: 0 0 6px;
+	}
+	div > p:first-child {
+		margin-top: 3px;
 	}
 	@media print {
 		.num {

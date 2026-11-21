@@ -49,12 +49,7 @@ export default rezept({
 		fix(2, 'Prise', 'Pfeffer')
 	],
 	schritte: [
-		start(
-			'Die Erbsen für die letzten 4 Min. mit in den Topf geben.',
-			0,
-			0.5,
-			{ order: 60 }
-		),
+		start('Die Erbsen für die letzten 4 Min. mit in den Topf geben.', 0, 0.5, { order: 60 }),
 		zitroneKraeuter,
 		pfanne(
 			3,
@@ -107,7 +102,9 @@ export default rezept({
 						3
 					)
 				],
-				tmSteps: [vor('Kartoffeln gründlich waschen und ungeschält in 2 cm große Würfel schneiden.', 3)]
+				tmSteps: [
+					vor('Kartoffeln gründlich waschen und ungeschält in 2 cm große Würfel schneiden.', 3)
+				]
 			},
 			{
 				id: 'blumenkohl',

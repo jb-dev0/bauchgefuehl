@@ -1,4 +1,15 @@
-import { anrichten, fix, ing, nebenbei, one, pfanne, rezept, start, tm, vor } from '../../helpers.ts';
+import {
+	anrichten,
+	fix,
+	ing,
+	nebenbei,
+	one,
+	pfanne,
+	rezept,
+	start,
+	tm,
+	vor
+} from '../../helpers.ts';
 
 const backen = pfanne(
 	2,
@@ -12,14 +23,18 @@ const fuellen = anrichten(
 );
 
 /** Eiweiß-Extra: vor den Pfannkuchen in derselben Pfanne braten. */
-const extra = (id: string, label: string, name: string, menge: number, text: string, cook: number) => ({
+const extra = (
+	id: string,
+	label: string,
+	name: string,
+	menge: number,
+	text: string,
+	cook: number
+) => ({
 	id,
 	label,
 	items: [ing(menge, 'g', name)],
-	steps: [
-		vor(`${label} in kleine Würfel schneiden.`, 2, { order: 20 }),
-		pfanne(1, text, cook, 1)
-	]
+	steps: [vor(`${label} in kleine Würfel schneiden.`, 2, { order: 20 }), pfanne(1, text, cook, 1)]
 });
 
 export default rezept({

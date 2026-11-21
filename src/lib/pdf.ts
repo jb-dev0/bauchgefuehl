@@ -166,9 +166,11 @@ async function buildPdf(spec: PdfSpec): Promise<Blob> {
 				pdf.circle(M + 3.2, y - 1.3, 3.3, 'F');
 				font('bold', 9, [255, 255, 255]);
 				pdf.text(String(i + 1), M + 3.2, y - 0.1, { align: 'center' });
-				font('bold', 11.5, INK);
-				pdf.text(clean(st.title), M + 10, y);
-				y += 5.6;
+				if (st.title) {
+					font('bold', 11.5, INK);
+					pdf.text(clean(st.title), M + 10, y);
+					y += 5.6;
+				}
 				font('normal', 10.5, INK);
 				for (const line of st.lines) {
 					for (const l of pdf.splitTextToSize(clean(line), CW - 10)) {

@@ -128,7 +128,10 @@ export default rezept({
 				short: 'warmer Pita',
 				items: [ing(4, 'Stk', 'Vollkorn-Pita')],
 				steps: [
-					nebenbei('Pita im Toaster oder in einer trockenen Pfanne aufbacken und in Streifen schneiden.', 1)
+					nebenbei(
+						'Pita im Toaster oder in einer trockenen Pfanne aufbacken und in Streifen schneiden.',
+						1
+					)
 				]
 			}
 		]),

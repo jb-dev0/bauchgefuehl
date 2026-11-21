@@ -5,7 +5,10 @@ import { readFileSync } from 'node:fs';
 const dir = new URL('../static/icons/', import.meta.url);
 const icon = readFileSync(new URL('icon.svg', dir), 'utf8');
 // Maskable: volle Fläche, Motiv in der sicheren Zone (80 %)
-const inner = icon.replace(/<svg[^>]*>/, '').replace('</svg>', '').replace(/<rect[^>]*\/>/, '');
+const inner = icon
+	.replace(/<svg[^>]*>/, '')
+	.replace('</svg>', '')
+	.replace(/<rect[^>]*\/>/, '');
 const maskable = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="#F6EFE4"/><g transform="translate(64 64) scale(0.75)">${inner}</g></svg>`;
 
 const targets = [

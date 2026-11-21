@@ -15,11 +15,9 @@ const backen = ofen(
 	15,
 	0.5
 );
-const schwenken = anrichten(
-	'Die Bällchen in die Sauce geben und vorsichtig durchschwenken.',
-	0.5,
-	{ order: 10 }
-);
+const schwenken = anrichten('Die Bällchen in die Sauce geben und vorsichtig durchschwenken.', 0.5, {
+	order: 10
+});
 const teller = anrichten(
 	'{base} mit Sauce und Bällchen auf Teller verteilen und mit dem restlichen Parmesan bestreuen.',
 	1,

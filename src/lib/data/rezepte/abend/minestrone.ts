@@ -77,11 +77,9 @@ export default rezept({
 						'Nudeln in reichlich Salzwasser nach Packungsangabe bissfest kochen (ca. 10 Min.) und abgießen.',
 						11
 					),
-					anrichten(
-						'Nudeln auf tiefe Teller verteilen und die Minestrone darüberschöpfen.',
-						0.5,
-						{ order: 10 }
-					)
+					anrichten('Nudeln auf tiefe Teller verteilen und die Minestrone darüberschöpfen.', 0.5, {
+						order: 10
+					})
 				]
 			},
 			{

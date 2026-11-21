@@ -110,11 +110,7 @@ export default rezept({
 				id: 'skyr',
 				label: 'Skyr-Zitronen-Dip',
 				short: 'Den Skyr-Dip',
-				items: [
-					ing(250, 'g', 'Skyr'),
-					ing(1, 'EL', 'Zitronensaft'),
-					ing(1, 'Zehe', 'Knoblauch')
-				],
+				items: [ing(250, 'g', 'Skyr'), ing(1, 'EL', 'Zitronensaft'), ing(1, 'Zehe', 'Knoblauch')],
 				steps: [
 					sauce(
 						'Skyr mit Zitronensaft, gepresstem Knoblauch, 1 Prise Salz und 2–3 EL Wasser cremig rühren.',

@@ -33,12 +33,7 @@ export default rezept({
 			2,
 			1.5
 		),
-		pfanne(
-			2,
-			'Karotte und Zucchini direkt in den Topf raspeln und 2 Min. mitdünsten.',
-			2,
-			2
-		),
+		pfanne(2, 'Karotte und Zucchini direkt in den Topf raspeln und 2 Min. mitdünsten.', 2, 2),
 		pfanne(4, 'Knoblauch und Tomatenmark dazugeben und 1 Min. anrösten.', 1, 0.5),
 		pfanne(
 			5,

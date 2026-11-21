@@ -35,13 +35,9 @@ export default rezept({
 			0.5,
 			{ order: 60 }
 		),
-		pfanne(
-			3,
-			'{gemuese} in die Pfanne geben und 4 Min. unter Rühren bissfest braten.',
-			4,
-			0.5,
-			{ wenn: 'gemuese' }
-		),
+		pfanne(3, '{gemuese} in die Pfanne geben und 4 Min. unter Rühren bissfest braten.', 4, 0.5, {
+			wenn: 'gemuese'
+		}),
 		pfanne(
 			4,
 			'{base}, Edamame, {prot} und die Sauce dazugeben und 1–2 Min. durchschwenken, bis alles heiß und rundum von Sauce überzogen ist. Ist sie zu dick, etwas Nudelwasser dazugeben.',
@@ -154,7 +150,12 @@ export default rezept({
 					id: 'brokkoli',
 					label: 'Brokkoli',
 					items: [ing(300, 'g', 'Brokkoli')],
-					steps: [vor('Brokkoli in kleine Röschen teilen, den Strunk schälen und in dünne Scheiben schneiden.', 2.5)]
+					steps: [
+						vor(
+							'Brokkoli in kleine Röschen teilen, den Strunk schälen und in dünne Scheiben schneiden.',
+							2.5
+						)
+					]
 				}
 			]
 		),

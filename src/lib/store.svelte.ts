@@ -557,12 +557,10 @@ class Store {
 		const grenze = addDays(heute(), -PLAN_TAGE_ZURUECK);
 		const [haus, plan, einkauf, rezepte] = await Promise.all([
 			this.pb.collection('haushalte').getOne(h),
-			this.pb
-				.collection('plan')
-				.getFullList({
-					filter: this.pb.filter('haushalt = {:h} && datum >= {:d}', { h, d: grenze }),
-					batch: 500
-				}),
+			this.pb.collection('plan').getFullList({
+				filter: this.pb.filter('haushalt = {:h} && datum >= {:d}', { h, d: grenze }),
+				batch: 500
+			}),
 			this.pb
 				.collection('einkauf')
 				.getFullList({ filter: this.pb.filter('haushalt = {:h}', { h }), batch: 500 }),

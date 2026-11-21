@@ -1,15 +1,4 @@
-import {
-	anrichten,
-	fix,
-	ing,
-	many,
-	one,
-	pfanne,
-	rezept,
-	start,
-	tm,
-	vor
-} from '../../helpers.ts';
+import { anrichten, fix, ing, many, one, pfanne, rezept, start, tm, vor } from '../../helpers.ts';
 
 export default rezept({
 	id: 'gebratener-reis',
@@ -86,7 +75,12 @@ export default rezept({
 				],
 				tmSteps: [
 					vor('Blumenkohl in Röschen teilen.', 1),
-					tm(1, 'Blumenkohl in den Mixtopf geben und 4 Sek./Stufe 5 zu „Reis“ zerkleinern.', 0.5, 0.5)
+					tm(
+						1,
+						'Blumenkohl in den Mixtopf geben und 4 Sek./Stufe 5 zu „Reis“ zerkleinern.',
+						0.5,
+						0.5
+					)
 				]
 			}
 		]),

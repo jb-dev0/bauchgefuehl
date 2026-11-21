@@ -1,4 +1,15 @@
-import { anrichten, fix, ing, nebenbei, one, pfanne, rezept, start, tm, vor } from '../../helpers.ts';
+import {
+	anrichten,
+	fix,
+	ing,
+	nebenbei,
+	one,
+	pfanne,
+	rezept,
+	start,
+	tm,
+	vor
+} from '../../helpers.ts';
 
 const petersilie = nebenbei('Petersilie waschen, trocken schütteln und fein hacken.', 1);
 const teller = anrichten(
@@ -66,12 +77,7 @@ export default rezept({
 			3,
 			0.5
 		),
-		pfanne(
-			2,
-			'Tomaten, Oliven, Oregano, Salz und Pfeffer dazugeben und aufkochen lassen.',
-			2,
-			0.5
-		),
+		pfanne(2, 'Tomaten, Oliven, Oregano, Salz und Pfeffer dazugeben und aufkochen lassen.', 2, 0.5),
 		petersilie,
 		teller
 	],
@@ -130,7 +136,12 @@ export default rezept({
 					items: [ing(2, 'Dose', 'Kichererbsen (Dose)'), ing(150, 'g', 'Feta')],
 					steps: [
 						vor('Kichererbsen in einem Sieb abspülen und abtropfen lassen.', 1, { order: 60 }),
-						pfanne(3, 'Kichererbsen in die Sauce rühren und zugedeckt 8 Min. köcheln lassen.', 8, 0.5),
+						pfanne(
+							3,
+							'Kichererbsen in die Sauce rühren und zugedeckt 8 Min. köcheln lassen.',
+							8,
+							0.5
+						),
 						anrichten('Feta darüberbröseln.', 0.5, { order: 20 })
 					],
 					tmSteps: [

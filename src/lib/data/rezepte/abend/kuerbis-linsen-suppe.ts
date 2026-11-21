@@ -42,7 +42,10 @@ export default rezept({
 	],
 	schritte: [
 		bruehe,
-		vor('Kürbis waschen, halbieren, entkernen und mit Schale in 1,5 cm große Würfel schneiden.', 3.5),
+		vor(
+			'Kürbis waschen, halbieren, entkernen und mit Schale in 1,5 cm große Würfel schneiden.',
+			3.5
+		),
 		vor('Zwiebel würfeln, Knoblauch und Ingwer fein reiben.', 2),
 		pfanne(
 			1,
@@ -121,7 +124,10 @@ export default rezept({
 					label: 'Kürbiskerne',
 					items: [ing(3, 'EL', 'Kürbiskerne')],
 					steps: [
-						nebenbei('Kürbiskerne in einer kleinen Pfanne ohne Fett 2–3 Min. rösten, bis sie duften.', 1),
+						nebenbei(
+							'Kürbiskerne in einer kleinen Pfanne ohne Fett 2–3 Min. rösten, bis sie duften.',
+							1
+						),
 						anrichten('Kürbiskerne über die Erwachsenen-Teller streuen.', 0.5, { order: 30 })
 					]
 				},

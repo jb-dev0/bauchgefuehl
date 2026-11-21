@@ -39,12 +39,7 @@ export default rezept({
 			'Zwiebel in feine Streifen schneiden. Kichererbsen in einem Sieb abgießen und abspülen.',
 			2
 		),
-		pfanne(
-			2,
-			'Währenddessen Zucchini und Paprika in mundgerechte Würfel schneiden.',
-			0,
-			4
-		),
+		pfanne(2, 'Währenddessen Zucchini und Paprika in mundgerechte Würfel schneiden.', 0, 4),
 		pfanne(
 			3,
 			'{prot} herausnehmen und warm stellen. Restliches Öl in die Pfanne geben und Zwiebel, Zucchini und Paprika darin bei starker Hitze 5 Min. braten.',

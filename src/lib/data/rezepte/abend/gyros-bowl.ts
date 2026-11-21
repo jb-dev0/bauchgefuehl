@@ -99,7 +99,10 @@ export default rezept({
 				short: 'Pitastreifen',
 				items: [ing(4, 'Stk', 'Vollkorn-Pita')],
 				steps: [
-					nebenbei('Pita im Toaster oder in einer trockenen Pfanne aufbacken und in Streifen schneiden.', 1)
+					nebenbei(
+						'Pita im Toaster oder in einer trockenen Pfanne aufbacken und in Streifen schneiden.',
+						1
+					)
 				]
 			}
 		]),
@@ -148,7 +151,10 @@ export default rezept({
 					short: 'den Halloumi',
 					items: [ing(250, 'g', 'Halloumi')],
 					steps: [
-						vor('Halloumi in 1 cm dicke Scheiben schneiden und mit der Gyros-Würze bestreichen.', 1.5),
+						vor(
+							'Halloumi in 1 cm dicke Scheiben schneiden und mit der Gyros-Würze bestreichen.',
+							1.5
+						),
 						pfanne(
 							1,
 							'Halloumi in einer großen Pfanne bei mittlerer Hitze je Seite 2 Min. goldbraun braten.',
@@ -193,14 +199,20 @@ export default rezept({
 				}
 			]
 		),
-		many('top', 'Topping', 'top', [], [
-			{
-				id: 'chili',
-				label: 'Chiliflocken (für Erwachsene)',
-				items: [fix(1, 'TL', 'Chiliflocken')],
-				steps: [anrichten('Für Erwachsene mit Chiliflocken bestreuen.', 0.5, { order: 40 })]
-			}
-		])
+		many(
+			'top',
+			'Topping',
+			'top',
+			[],
+			[
+				{
+					id: 'chili',
+					label: 'Chiliflocken (für Erwachsene)',
+					items: [fix(1, 'TL', 'Chiliflocken')],
+					steps: [anrichten('Für Erwachsene mit Chiliflocken bestreuen.', 0.5, { order: 40 })]
+				}
+			]
+		)
 	],
 	kind: 'Hähnchen oder Halloumi in kleine Stücke schneiden, Gyros-Kichererbsen leicht zerdrücken – ganz sind sie für Dreijährige zu riskant. Gemüse klein würfeln, rote Zwiebel und Chili weglassen. Das Tzatziki macht alles schön mild.',
 	mitnehmen:

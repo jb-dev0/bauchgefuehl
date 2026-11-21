@@ -97,9 +97,7 @@ export default rezept({
 				label: 'Vollkorn-Tortillas',
 				short: 'warmen Tortillas',
 				items: [ing(4, 'Stk', 'Vollkorn-Tortilla')],
-				steps: [
-					nebenbei('Tortillas in einer trockenen Pfanne je Seite 20 Sek. erwärmen.', 1.5)
-				]
+				steps: [nebenbei('Tortillas in einer trockenen Pfanne je Seite 20 Sek. erwärmen.', 1.5)]
 			}
 		]),
 		one(

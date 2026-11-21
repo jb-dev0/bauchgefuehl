@@ -35,11 +35,7 @@ export default rezept({
 			1.5,
 			{ order: 10 }
 		),
-		anrichten(
-			'{base} und etwas Nudelwasser untermischen, bis alles sämig ist.',
-			1,
-			{ order: 20 }
-		)
+		anrichten('{base} und etwas Nudelwasser untermischen, bis alles sämig ist.', 1, { order: 20 })
 	],
 	slots: [
 		one('base', 'Nudeln', 'base', 'vollkorn', [

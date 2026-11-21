@@ -33,9 +33,13 @@ export default rezept({
 	],
 	schritte: [
 		vor('Backofen auf 220 °C Ober-/Unterhitze (200 °C Umluft) vorheizen.', 0.5, { order: 0 }),
-		vor('Paprika entkernen und in Streifen schneiden, Zwiebeln in schmale Spalten schneiden.', 6.5, {
-			order: 10
-		}),
+		vor(
+			'Paprika entkernen und in Streifen schneiden, Zwiebeln in schmale Spalten schneiden.',
+			6.5,
+			{
+				order: 10
+			}
+		),
 		vor(
 			'Alles auf einem Backblech mit Olivenöl, Paprikapulver, Kreuzkümmel, Oregano, Salz und Pfeffer gut mischen und flach verteilen.',
 			1.5,

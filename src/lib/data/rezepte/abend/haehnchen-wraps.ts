@@ -1,4 +1,16 @@
-import { anrichten, fix, ing, many, nebenbei, one, pfanne, rezept, sauce, tm, vor } from '../../helpers.ts';
+import {
+	anrichten,
+	fix,
+	ing,
+	many,
+	nebenbei,
+	one,
+	pfanne,
+	rezept,
+	sauce,
+	tm,
+	vor
+} from '../../helpers.ts';
 
 const fuellen = [
 	anrichten('{base} mit Bohnen-Dip bestreichen und mit {prot} belegen.', 1, { order: 10 }),

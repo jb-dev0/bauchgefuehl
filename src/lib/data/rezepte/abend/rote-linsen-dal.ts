@@ -45,10 +45,7 @@ export default rezept({
 		ing(250, 'g', 'Skyr', 'zum Servieren')
 	],
 	schritte: [
-		vor(
-			'Zwiebel fein würfeln. Linsen in einem Sieb abspülen, bis das Wasser klar abläuft.',
-			2.5
-		),
+		vor('Zwiebel fein würfeln. Linsen in einem Sieb abspülen, bis das Wasser klar abläuft.', 2.5),
 		pfanne(
 			1,
 			'Öl in einem Topf erhitzen und die Zwiebel darin 3 Min. glasig dünsten. Währenddessen Knoblauch und Ingwer schälen und fein reiben.',
@@ -136,7 +133,10 @@ export default rezept({
 				short: 'warmer Pita',
 				items: [ing(3, 'Stk', 'Vollkorn-Pita')],
 				steps: [
-					nebenbei('Pita im Toaster oder in einer trockenen Pfanne aufbacken und in Streifen schneiden.', 1)
+					nebenbei(
+						'Pita im Toaster oder in einer trockenen Pfanne aufbacken und in Streifen schneiden.',
+						1
+					)
 				]
 			}
 		]),

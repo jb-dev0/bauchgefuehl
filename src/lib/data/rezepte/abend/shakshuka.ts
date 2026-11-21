@@ -72,14 +72,20 @@ export default rezept({
 				steps: [nebenbei('Pita im Toaster aufbacken und in Streifen schneiden.', 1)]
 			}
 		]),
-		many('top', 'Topping', 'top', [], [
-			{
-				id: 'chili',
-				label: 'Chiliflocken (für Erwachsene)',
-				items: [fix(1, 'TL', 'Chiliflocken')],
-				steps: [anrichten('Für Erwachsene am Tisch Chiliflocken darüberstreuen.', 0.5)]
-			}
-		])
+		many(
+			'top',
+			'Topping',
+			'top',
+			[],
+			[
+				{
+					id: 'chili',
+					label: 'Chiliflocken (für Erwachsene)',
+					items: [fix(1, 'TL', 'Chiliflocken')],
+					steps: [anrichten('Für Erwachsene am Tisch Chiliflocken darüberstreuen.', 0.5)]
+				}
+			]
+		)
 	],
 	ohneTm:
 		'Die Eier müssen zugedeckt in der Sauce stocken, das geht nur in der Pfanne. Die paar Schnitte sind von Hand schneller erledigt.',

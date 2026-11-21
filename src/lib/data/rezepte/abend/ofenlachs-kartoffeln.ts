@@ -119,8 +119,7 @@ export default rezept({
 	kind: 'Kartoffelspalten und Brokkoli klein schneiden, Kirschtomaten vierteln. Fisch sorgfältig auf Gräten prüfen und zerpflücken. Einen Löffel Skyr vor dem Knoblauch für das Kind abnehmen, als Dip zum Eintunken. Halloumi ist salzig, davon nur ein Stück.',
 	mitnehmen:
 		'Reste rasch abkühlen, in eine Box füllen und innerhalb von 1–2 Tagen essen. Den Fisch vorher zerpflücken und alles in der Mikrowelle 2–3 Min. dampfend heiß erhitzen. Den Kräuter-Skyr kalt dazu mitnehmen.',
-	vorrat:
-		'Den Kräuter-Skyr kannst du am Vortag anrühren, er hält abgedeckt 2 Tage im Kühlschrank.',
+	vorrat: 'Den Kräuter-Skyr kannst du am Vortag anrühren, er hält abgedeckt 2 Tage im Kühlschrank.',
 	gdm: 'Die Kartoffelmenge etwas kleiner halten und dafür mehr Brokkoli aufs Blech legen. Mit Fisch und Kräuter-Skyr anfangen: Eiweiß zuerst lässt den Blutzucker langsamer steigen.',
 	tags: ['ofen'],
 	photoAlt:
