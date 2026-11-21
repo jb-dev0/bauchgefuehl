@@ -1,0 +1,19 @@
+# Nur für Coolify (Build Pack „Docker Compose“, Docker Compose Location: /docker-compose.coolify.yml).
+# Gebaut wird nicht auf dem Server: Der Forgejo-Runner baut das Image bei jedem Push auf main
+# (.forgejo/workflows/deploy.yml) und legt es in die Registry auf git.fux.earth. Coolify zieht es nur noch.
+# Domain beim Service „bauchgefuehl“ mit Port 8090 eintragen, z. B. https://essen.example.de:8090
+# Unter der Domain: die App, /_/ PocketBase-Admin, /api Datenbank-API.
+services:
+  bauchgefuehl:
+    image: git.fux.earth/jb/bauchgefuehl:latest
+    restart: unless-stopped
+    mem_limit: 256m
+    environment:
+      TZ: Europe/Berlin
+    volumes:
+      - bauchgefuehl_daten:/pb/pb_data
+    expose:
+      - '8090'
+
+volumes:
+  bauchgefuehl_daten:

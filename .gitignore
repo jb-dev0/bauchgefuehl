@@ -1,0 +1,25 @@
+node_modules
+
+# Output
+/.svelte-kit
+/build
+
+# PocketBase lokal
+/pocketbase/pocketbase
+/pocketbase/pb_data
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Lokale Docker-Overrides
+docker-compose.override.yml

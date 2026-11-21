@@ -1,0 +1,18 @@
+# Gibt jeden Push auf main an das gleichnamige Repo auf git.fux.earth (Benutzer jb) weiter.
+# In jedem Projekt gleich. Braucht das GitHub-Secret FORGEJO_TOKEN
+# (Forgejo-Token mit repository: Lesen und Schreiben).
+name: An Forgejo weitergeben
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  weitergeben:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Nach Forgejo pushen
+        run: git push "https://jb:${{ secrets.FORGEJO_TOKEN }}@git.fux.earth/jb/${{ github.event.repository.name }}.git" HEAD:main

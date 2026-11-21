@@ -1,0 +1,5 @@
+package-lock.json
+/static/
+/build/
+/.svelte-kit/
+/pocketbase/pb_data/

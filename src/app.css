@@ -1,0 +1,320 @@
+/* Bauchgefühl – warm und erdig: Terrakotta, Salbei, Creme. */
+
+:root {
+	--bg: #f6efe4;
+	--surface: #fffaf3;
+	--surface-2: #efe4d3;
+	--ink: #3a2a21;
+	--muted: #7a6656;
+	--line: #e3d4c0;
+	--terra: #b85c38;
+	--terra-ink: #9b4a2b;
+	--terra-soft: #f2d9c9;
+	--sage: #6f8b69;
+	--sage-ink: #4f6a4a;
+	--sage-soft: #dfe7d6;
+	--sand: #e8d5b5;
+	--warn: #b7791f;
+	--warn-soft: #f6e5c3;
+	--on-accent: #fffaf3;
+	--shadow: 0 1px 2px rgb(58 42 33 / 0.06), 0 8px 24px -12px rgb(58 42 33 / 0.18);
+	--radius: 18px;
+	--radius-s: 12px;
+	--display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+	--body: 'Nunito Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--wrap: 720px;
+	--tabbar: 68px;
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--bg: #1d1713;
+		--surface: #28201a;
+		--surface-2: #342a22;
+		--ink: #f3e9dc;
+		--muted: #bba893;
+		--line: #43372d;
+		--terra: #e08a62;
+		--terra-ink: #f0a582;
+		--terra-soft: #4a2f22;
+		--sage: #9db894;
+		--sage-ink: #b9d0b0;
+		--sage-soft: #2e3a2b;
+		--sand: #5a4834;
+		--warn: #e2b35a;
+		--warn-soft: #43361e;
+		--on-accent: #1d1713;
+		--shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+		color-scheme: dark;
+	}
+}
+:root[data-theme='dark'] {
+	--bg: #1d1713;
+	--surface: #28201a;
+	--surface-2: #342a22;
+	--ink: #f3e9dc;
+	--muted: #bba893;
+	--line: #43372d;
+	--terra: #e08a62;
+	--terra-ink: #f0a582;
+	--terra-soft: #4a2f22;
+	--sage: #9db894;
+	--sage-ink: #b9d0b0;
+	--sage-soft: #2e3a2b;
+	--sand: #5a4834;
+	--warn: #e2b35a;
+	--warn-soft: #43361e;
+	--on-accent: #1d1713;
+	--shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+	color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--ink);
+	font-family: var(--body);
+	font-size: 17px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--display);
+	font-variation-settings: 'SOFT' 100;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	line-height: 1.15;
+	margin: 0;
+	text-wrap: balance;
+}
+h1 {
+	font-size: clamp(30px, 7vw, 40px);
+}
+h2 {
+	font-size: 23px;
+	margin: 32px 0 12px;
+}
+h3 {
+	font-size: 18px;
+}
+
+p {
+	margin: 0 0 12px;
+	text-wrap: pretty;
+}
+
+a {
+	color: var(--terra-ink);
+	text-underline-offset: 3px;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	cursor: pointer;
+}
+
+:focus-visible {
+	outline: 3px solid var(--terra);
+	outline-offset: 2px;
+	border-radius: 6px;
+}
+
+.wrap {
+	max-width: var(--wrap);
+	margin: 0 auto;
+	padding: max(20px, env(safe-area-inset-top)) 16px
+		calc(var(--tabbar) + 32px + env(safe-area-inset-bottom));
+}
+
+.lede {
+	color: var(--muted);
+	font-size: 18px;
+	margin-top: 8px;
+}
+
+.muted {
+	color: var(--muted);
+}
+
+.small {
+	font-size: 14px;
+}
+
+/* Knöpfe */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 46px;
+	padding: 0 18px;
+	border-radius: 999px;
+	border: 1.5px solid var(--terra);
+	background: var(--terra);
+	color: var(--on-accent);
+	font-weight: 700;
+	font-size: 16px;
+	text-decoration: none;
+	transition:
+		transform 0.12s ease,
+		background 0.15s ease;
+}
+.btn:active {
+	transform: scale(0.97);
+}
+.btn.ghost {
+	background: transparent;
+	color: var(--terra-ink);
+}
+.btn.sage {
+	background: var(--sage);
+	border-color: var(--sage);
+}
+.btn.small {
+	min-height: 38px;
+	padding: 0 14px;
+	font-size: 15px;
+}
+.btn:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+.btn svg {
+	width: 18px;
+	height: 18px;
+}
+
+.card {
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+}
+
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 38px;
+	padding: 0 14px;
+	border-radius: 999px;
+	border: 1.5px solid var(--line);
+	background: var(--surface);
+	color: var(--ink);
+	font-size: 15px;
+	font-weight: 600;
+}
+.chip[aria-pressed='true'] {
+	background: var(--ink);
+	border-color: var(--ink);
+	color: var(--bg);
+}
+
+.badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 2px 9px;
+	border-radius: 999px;
+	font-size: 13px;
+	font-weight: 700;
+	background: var(--surface-2);
+	color: var(--muted);
+	white-space: nowrap;
+}
+.badge.sage {
+	background: var(--sage-soft);
+	color: var(--sage-ink);
+}
+.badge.terra {
+	background: var(--terra-soft);
+	color: var(--terra-ink);
+}
+.badge.warn {
+	background: var(--warn-soft);
+	color: var(--warn);
+}
+
+.field {
+	display: grid;
+	gap: 6px;
+	margin-bottom: 16px;
+}
+.field > span {
+	font-weight: 700;
+	font-size: 15px;
+}
+.input {
+	width: 100%;
+	min-height: 46px;
+	padding: 10px 14px;
+	border-radius: var(--radius-s);
+	border: 1.5px solid var(--line);
+	background: var(--surface);
+}
+textarea.input {
+	min-height: 120px;
+	resize: vertical;
+	line-height: 1.45;
+}
+.input:focus {
+	border-color: var(--terra);
+	outline: none;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+@media print {
+	.no-print {
+		display: none !important;
+	}
+	body {
+		background: #fff;
+		color: #000;
+		font-size: 12pt;
+	}
+	.wrap {
+		padding: 0;
+		max-width: none;
+	}
+	.card {
+		box-shadow: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+		animation: none !important;
+	}
+}

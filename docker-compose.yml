@@ -1,0 +1,17 @@
+# Bauchgefühl – lokal bauen und testen: docker compose up --build, dann http://localhost:8090
+# (dafür docker-compose.override.example.yml nach docker-compose.override.yml kopieren).
+# In Coolify wird docker-compose.coolify.yml verwendet (fertiges Image aus git.fux.earth).
+# Unter der Domain: die App, /_/ PocketBase-Admin, /api Datenbank-API.
+services:
+  bauchgefuehl:
+    build: .
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Berlin
+    volumes:
+      - bauchgefuehl_daten:/pb/pb_data
+    expose:
+      - '8090'
+
+volumes:
+  bauchgefuehl_daten:

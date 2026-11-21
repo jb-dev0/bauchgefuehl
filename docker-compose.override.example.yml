@@ -1,0 +1,6 @@
+# Lokal testen: nach docker-compose.override.yml kopieren, dann docker compose up --build
+# und http://localhost:8090 öffnen.
+services:
+  bauchgefuehl:
+    ports:
+      - '8090:8090'

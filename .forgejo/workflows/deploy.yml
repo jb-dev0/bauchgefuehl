@@ -1,0 +1,106 @@
+# Bauen und deployen – diese Datei ist in jedem Projekt gleich und muss nicht angepasst werden.
+#
+# Ablauf bei jedem Push auf main:
+#   1. Alle Services, die in docker-compose.yml (oder compose.yml) ein build: haben, werden gebaut.
+#      Den Image-Namen nimmt der Runner aus docker-compose.coolify.yml (image: git.fux.earth/…).
+#      Build-Argumente und --target aus der Compose-Datei werden übernommen; Werte wie ${PUBLIC_…}
+#      kommen aus den Forgejo-Variablen des Repos (Einstellungen → Actions → Variablen).
+#   2. Die Images werden in die Registry auf git.fux.earth hochgeladen.
+#   3. Coolify deployt die Ressource aus der Forgejo-Variable COOLIFY_UUID. Ohne diese Variable
+#      alles, was in Coolify den Tag mit dem Repo-Namen trägt.
+#   Mehrere Services mit demselben Image (z. B. app und worker) werden nur einmal gebaut.
+#
+# Einmalig nötig (Forgejo → Benutzer-Einstellungen → Actions → Secrets):
+#   REGISTRY_TOKEN  Forgejo-Token mit package: Lesen und Schreiben
+#   COOLIFY_TOKEN   Coolify-API-Token mit Berechtigung deploy
+# Pro Projekt nötig: docker-compose.coolify.yml und COOLIFY_UUID (oder in Coolify der Tag = Repo-Name).
+#
+# Manuell starten: Forgejo → Actions → „Bauen und deployen“ → „Workflow ausführen“.
+name: Bauen und deployen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REGISTRY: git.fux.earth
+  COOLIFY: https://coolify.fux.earth
+  REPO: ${{ forgejo.repository }}
+
+jobs:
+  bauen:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Werkzeuge bereitstellen
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! docker compose version >/dev/null 2>&1; then
+            mkdir -p ~/.docker/cli-plugins
+            curl -fsSL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+              -o ~/.docker/cli-plugins/docker-compose
+            chmod +x ~/.docker/cli-plugins/docker-compose
+          fi
+          command -v jq >/dev/null || { apt-get update -qq && apt-get install -y -qq jq; }
+          docker compose version
+
+      - name: Bei der Forgejo-Registry anmelden
+        shell: bash
+        run: |
+          echo "${{ secrets.REGISTRY_TOKEN }}" | docker login "$REGISTRY" -u "${REPO%%/*}" --password-stdin
+
+      - name: Images bauen und hochladen
+        shell: bash
+        env:
+          VARIABLEN: ${{ toJSON(vars) }}
+        run: |
+          set -euo pipefail
+          # Repo-Variablen als Umgebung, damit ${…} in der Compose-Datei aufgelöst werden.
+          [ -n "${VARIABLEN:-}" ] || VARIABLEN='{}'
+          eval "$(jq -r 'to_entries[] | select(.key | test("^[A-Za-z_][A-Za-z0-9_]*$"))
+                         | "export \(.key)=\(.value | tostring | @sh)"' <<< "$VARIABLEN")"
+
+          BASIS=""
+          for f in docker-compose.yml docker-compose.yaml compose.yml compose.yaml; do
+            if [ -f "$f" ]; then BASIS="$f"; break; fi
+          done
+          [ -n "$BASIS" ] || { echo "Keine docker-compose.yml oder compose.yml gefunden."; exit 1; }
+          [ -f .env ] || touch .env   # manche Compose-Dateien verlangen env_file: .env
+
+          docker compose -f "$BASIS" -f docker-compose.coolify.yml config --format json > /tmp/compose.json
+          mapfile -t BILDER < <(jq -r --arg reg "$REGISTRY/" '
+            [ .services[]
+              | select(.build != null and ((.image // "") | startswith($reg)))
+              | [ .image, .build.context, (.build.dockerfile // "Dockerfile"), (.build.target // ""),
+                  ((.build.args // {}) | to_entries | map("\(.key)=\(.value // "")") | join("\u001f")) ] ]
+            | unique_by(.[0]) | .[] | join("\u001e")' /tmp/compose.json)
+          if [ "${#BILDER[@]}" -eq 0 ]; then
+            echo "Kein Service mit build: in $BASIS und image: $REGISTRY/… in docker-compose.coolify.yml gefunden."
+            exit 1
+          fi
+
+          for zeile in "${BILDER[@]}"; do
+            IFS=$'\x1e' read -r bild kontext dockerfile ziel argumente <<< "$zeile"
+            case "$dockerfile" in /*) ;; *) dockerfile="$kontext/$dockerfile" ;; esac
+            optionen=()
+            if [ -n "$ziel" ]; then optionen+=(--target "$ziel"); fi
+            if [ -n "$argumente" ]; then
+              IFS=$'\x1f' read -ra liste <<< "$argumente"
+              for a in "${liste[@]}"; do optionen+=(--build-arg "$a"); done
+            fi
+            echo "::group::$bild"
+            docker build "${optionen[@]}" -t "$bild" -f "$dockerfile" "$kontext"
+            docker push "$bild"
+            echo "::endgroup::"
+          done
+
+      - name: Coolify deployen
+        shell: bash
+        run: |
+          ZIEL="${{ vars.COOLIFY_UUID }}"
+          if [ -n "$ZIEL" ]; then ABFRAGE="uuid=$ZIEL"; else ABFRAGE="tag=${REPO#*/}"; fi
+          curl -fsS -X POST -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
+            "$COOLIFY/api/v1/deploy?$ABFRAGE"
